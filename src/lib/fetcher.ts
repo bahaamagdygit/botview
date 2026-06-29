@@ -188,7 +188,18 @@ async function requestOnce(options: {
 }
 
 function safeLookup(address: SafeAddress): http.RequestOptions['lookup'] {
-  return (_hostname, _options, callback) => {
+  return (_hostname, options, callback) => {
+    // Node's net.connect (used by http/https) calls lookup with `all: true`
+    // and expects the callback to receive an array of { address, family }.
+    // Calling back with the single-positional form in that case yields
+    // "Invalid IP address: undefined". Honor whichever form was requested.
+    if (typeof options === 'object' && options?.all) {
+      (callback as (err: NodeJS.ErrnoException | null, addresses: { address: string; family: number }[]) => void)(
+        null,
+        [{ address: address.address, family: address.family }]
+      );
+      return;
+    }
     callback(null, address.address, address.family);
   };
 }
