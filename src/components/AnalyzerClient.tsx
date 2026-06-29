@@ -95,8 +95,11 @@ export default function AnalyzerClient() {
       <section className="mb-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
         <div className="grid gap-8 p-6 md:grid-cols-[1.2fr_0.8fr] md:p-10">
           <div>
-            <div className="mb-4 inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
-              BotView MVP
+            <div className="mb-4 flex items-center gap-3">
+              <BotLogo className="h-11 w-11 shrink-0" />
+              <div className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
+                BotView MVP
+              </div>
             </div>
             <h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">
               SEO Bot Visibility Checker
@@ -201,7 +204,33 @@ export default function AnalyzerClient() {
           </div>
         </section>
       )}
+
+      <footer className="mt-10 flex flex-col items-center gap-2 border-t border-slate-200 pt-6 text-center">
+        <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
+          <BotLogo className="h-5 w-5" />
+          <span>BotView — SEO Bot Visibility Checker</span>
+        </div>
+        <p className="text-sm text-slate-500">
+          Developed by <span className="font-bold text-slate-800">Eng. Bahaa Magdy</span>
+        </p>
+      </footer>
     </main>
+  );
+}
+
+function BotLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#020617" />
+      <rect x="16" y="22" width="32" height="24" rx="6" fill="#2563eb" />
+      <circle cx="26" cy="33" r="3.5" fill="#ffffff" />
+      <circle cx="38" cy="33" r="3.5" fill="#ffffff" />
+      <rect x="26" y="41" width="12" height="2.5" rx="1.25" fill="#bfdbfe" />
+      <line x1="32" y1="14" x2="32" y2="22" stroke="#2563eb" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="32" cy="12" r="3" fill="#22c55e" />
+      <line x1="13" y1="30" x2="16" y2="30" stroke="#2563eb" strokeWidth="3" strokeLinecap="round" />
+      <line x1="48" y1="30" x2="51" y2="30" stroke="#2563eb" strokeWidth="3" strokeLinecap="round" />
+    </svg>
   );
 }
 
